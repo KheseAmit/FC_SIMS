@@ -86,7 +86,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Profile</a></li>
                     <li class="divider"></li>
-                    <li><a href="login.html">Logout</a></li>
+                    <li><a href="~/Account/login">Logout</a></li>
                 </ul>
             </div>
             <!-- user dropdown ends -->
@@ -134,12 +134,12 @@
                         <div class="nav-sm nav nav-stacked">
                         </div>
                         <ul class="nav nav-pills nav-stacked main-menu">
-                            <li class="nav-header">Main</li>
+                            <li class="nav-header">@Html.Raw(DateTime.Now.ToString("dddd, MMMM dd"))</li>
                             <li>
                                 <a class="ajax-link" href="/Home/Index"><i class="glyphicon glyphicon-home"></i><span> Home</span></a>
                             </li>
                             <li>
-                                <a class="ajax-link" href="ui.html"><i class="glyphicon glyphicon-eye-open"></i><span>Course</span></a>
+                                <a class="ajax-link" href="ui.html"><i class="glyphicon glyphicon-book"></i><span> Course</span></a>
                             </li>
                             @*<li>
                                 <a class="ajax-link" href="form.html">
@@ -150,7 +150,7 @@
                                 <a class="ajax-link" href="chart.html"><i class="glyphicon glyphicon-list-alt"></i><span> Employee</span></a>
                             </li>
                             <li>
-                                <a class="ajax-link" href="typography.html"><i class="glyphicon glyphicon-font"></i><span> Department</span></a>
+                                <a class="ajax-link" href="typography.html"><i class="glyphicon glyphicon-certificate"></i><span> Department</span></a>
                             </li>
                             <li>
                                 <a class="ajax-link" href="gallery.html"><i class="glyphicon glyphicon-picture"></i><span> Results</span></a>
@@ -169,25 +169,25 @@
                                 </ul>
                             </li>*@
                             <li>
-                                <a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-calendar"></i><span> Activity</span></a>
+                                <a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-time"></i><span> Activity</span></a>
                             </li>
                             <li>
-                                <a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-calendar"></i><span> News</span></a>
+                                <a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-tag"></i><span> News</span></a>
                             </li>
                             <li>
-                                <a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-calendar"></i><span> Broadcast</span></a>
+                                <a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-transfer"></i><span> Broadcast</span></a>
                             </li>
                             <li>
-                                <a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-calendar"></i><span> Notice</span></a>
+                                <a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-stats"></i><span> Notice</span></a>
                             </li>
                             <li>
-                                <a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-calendar"></i><span> Feedback</span></a>
+                                <a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-subtitles"></i><span> Feedback</span></a>
                             </li>
                             <li>
-                                <a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-calendar"></i><span> Boards</span></a>
+                                <a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-map-marker"></i><span> Boards</span></a>
                             </li>
                             <li>
-                                <a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-calendar"></i><span> Help</span></a>
+                                <a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-phone"></i><span> Help</span></a>
                             </li>
                         </ul>
                        
