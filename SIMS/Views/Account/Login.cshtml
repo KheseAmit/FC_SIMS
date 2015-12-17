@@ -1,4 +1,4 @@
-﻿@model SIMSData.SIMS_User
+﻿@model  FC.Entities.FC_Users
 @{
     Layout = null;
 }
@@ -54,24 +54,37 @@
                             <div class="input-group input-group-lg">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
                                 @*<input type="text" class="form-control" placeholder="Username">*@
-                                @Html.TextBoxFor(c => c.UserName,new { @class="form-control"});
+                      
+                                @Html.TextBoxFor(c => c.UserName, new { @class = "form-control", @placeholder = "UserName", autofocus = "" })
                                 
                             </div>
                             <div class="clearfix"></div><br>
                             <div class="input-group input-group-lg">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card red"></i></span>
                                 @*<input type="password" class="form-control" placeholder="Password">*@
-                                @Html.PasswordFor(c => c.Password, new { @class = "form-control" })
+         
+                                @Html.PasswordFor(c => c.Password, new { @class = "form-control", @placeholder = "Password", autofocus = "", value = "" })
                             </div>
                             <div class="clearfix"></div>
                             <div class="input-prepend">
-                                <label class="remember" for="remember">
-                                <input type="checkbox" id="remember"> Remember me</label>
+                                <label class="remember">
+                                    @Html.CheckBoxFor(c => c.IsAdmin) Is Admin User</label>
                             </div>
                             <div class="clearfix"></div>
                             <p class="center col-md-5">
                                 <button type="submit" class="btn btn-primary">Login</button>
                             </p>
+                            @{
+                                if (ViewBag.InvalidLoginMessage != null)
+                                {
+
+                                    <div class="alert alert-danger">
+                                        <strong>@Html.Raw(Convert.ToString(ViewBag.InvalidLoginMessage))</strong>
+                                    </div>
+
+
+                                }
+                            }
                         </fieldset>
                     </form>
                 </div>
