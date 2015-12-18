@@ -9,7 +9,8 @@ namespace SIMS.Entities.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(FC.Entities.FcEntities context)

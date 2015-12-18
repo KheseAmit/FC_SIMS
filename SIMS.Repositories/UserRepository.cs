@@ -20,7 +20,7 @@ namespace FC.Repositories
         {
             using (dbcontext = new FcEntities())
             {
-                var objUser = dbcontext.User.FirstOrDefault(c => c.UserName == fcUser.UserName &&
+                var objUser = dbcontext.FC_Users.FirstOrDefault(c => c.Name == fcUser.Name &&
                                                         c.IsAdmin == fcUser.IsAdmin);
                 return objUser != null && passwordHasher.VerifyHashedPassword(fcUser.Password, objUser.Password,
                     (string.IsNullOrEmpty(objUser.PasswordSalt)

@@ -7,13 +7,13 @@ namespace SIMS.Entities.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddUrl : IMigrationMetadata
+    public sealed partial class SIMSMigrations : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddUrl));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SIMSMigrations));
         
         string IMigrationMetadata.Id
         {
-            get { return "201512160758491_AddUrl"; }
+            get { return "201512181111268_SIMSMigrations"; }
         }
         
         string IMigrationMetadata.Source

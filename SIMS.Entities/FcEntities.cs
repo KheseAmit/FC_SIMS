@@ -20,6 +20,11 @@ namespace FC.Entities
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
-        public virtual DbSet<FC_Users> User { get; set; }
+        public virtual DbSet<FC_Users> FC_Users { get; set; }
+        public virtual DbSet<SIMS_Department> SIMS_Department { get; set; }
+        public virtual DbSet<SIMS_Designation> SIMS_Designation { get; set; }
+        public virtual DbSet<SIMS_Employee> SIMS_Employee { get; set; }
+        public virtual DbSet<SIMS_EmployeeType> SIMS_EmployeeType { get; set; }
+ 
     }
 }
