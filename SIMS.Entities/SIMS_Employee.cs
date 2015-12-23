@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,22 +10,16 @@ namespace FC.Entities
     {
 
         public int DepartmentId { get; set; }
-
-
         public int DesignationId { get; set; }
-
         public string Experience { get; set; }
         public string Qualification { get; set; }
-
-
         public int EmployeeTypeId { get; set; }
-
         public string ContactNumber { get; set; }
         public bool EmailId { get; set; }
-
-
         public int CreatedBy { get; set; }
 
+        
+       // [DefaultValue(System.DateTime.Now.Date.ToString())]
         public DateTime CreatedOn { get; set; }
 
 

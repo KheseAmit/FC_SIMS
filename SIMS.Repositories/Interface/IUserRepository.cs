@@ -10,7 +10,7 @@ namespace FC.Repositories
 {
     public interface IUserRepository
     {
-        bool IsValidUser(FC_Users fcUser);
+        bool IsValidUser(FC_Users fcUser, out int Id);
     }
 }
 

@@ -32,8 +32,10 @@ namespace SIMS.Controllers
         [HttpPost]
         public ActionResult Login(FC_Users fcUser)
         {
-            if (UserRepository.IsValidUser(fcUser))
+            int id = 1;
+            if (UserRepository.IsValidUser(fcUser,out id))
             {
+                Session["UserId"] = id;
                 return RedirectToAction("index", "Home");
             }
             else

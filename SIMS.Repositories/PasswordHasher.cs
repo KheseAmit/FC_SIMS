@@ -14,7 +14,6 @@ namespace FC.Repositories
             var hash = sha256.ComputeHash(bytes);
             return Convert.ToBase64String(hash);
 
-            return password;
         }
 
         public String GetRandomSalt(Int32 size = 12)
