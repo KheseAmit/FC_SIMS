@@ -27,7 +27,7 @@ namespace UI
                         "~/Scripts/BootstrapJS/jquery.cookie.js",
                         "~/bower_components/moment/min/moment.min.js",
                         "~/bower_components/fullcalendar/dist/fullcalendar.min.js",
-                        "~/Scripts/BootstrapJS/jquery.dataTables.min.js",
+                        //"~/Scripts/BootstrapJS/jquery.dataTables.min.js",
                         "~/bower_components/chosen/chosen.jquery.min.js",
                         "~/bower_components/colorbox/jquery.colorbox-min.js",
                         "~/Scripts/BootstrapJS/jquery.noty.js",
