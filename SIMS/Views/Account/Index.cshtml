@@ -1,0 +1,132 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+ 
+    <!-- Bootstrap Core CSS -->
+  
+    <link id="bs-css" href="@Url.Content("/Content/bootstrap-spacelab.min.css")" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/css")
+</head>
+ 
+ 
+  
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" style="font-size:22px;" href="#">DIGIworld</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav" style="float:right;font-size:large;">
+                        <li>
+                            <a href="Login" style="font-weight:bold;">Login</a>
+                        </li>
+                         
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+        <!-- Half Page Image Background Carousel Header -->
+        <header id="myCarousel" class="carousel slide">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- Wrapper for Slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <!-- Set the first background image using inline CSS below. -->
+                    <div class="fill" style="background-image:url('../../img/Furniture/F1.jpg');"></div>
+                    <div class="carousel-caption">
+                        <h2>Dining</h2>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Set the second background image using inline CSS below. -->
+                    <div class="fill" style="background-image:url('../../img/Furniture/F2.jpg');"></div>
+                    <div class="carousel-caption">
+                        <h2>Bed</h2>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Set the third background image using inline CSS below. -->
+                    <div class="fill" style="background-image:url('../../img/Furniture/F3.jpg');"></div>
+                    <div class="carousel-caption">
+                        <h2>Kitchen</h2>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Set the third background image using inline CSS below. -->
+                    <div class="fill" style="background-image:url('../../img/Furniture/F5.jpg');"></div>
+                    <div class="carousel-caption">
+                        <h2>Hall Sofa</h2>
+                    </div>
+                </div>
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="icon-prev"></span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="icon-next"></span>
+            </a>
+        </header>
+        <!-- Page Content -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>@System.Configuration.ConfigurationManager.AppSettings["CompanyName"]</h1>
+                    <p>Bodeke nagar, Junnar </p>
+                    <p>pune </p>
+                    <p>- Hemant chandrakant khot </p>
+                </div>
+            </div>
+            <hr>
+
+            <footer class="row">
+                <p class="col-md-9 col-sm-9 col-xs-12 copyright">
+                    &copy; <a href="#" target="_blank">
+                        FastCodeINX
+                    </a> 2015
+                </p>
+                <p class="col-md-3 col-sm-3 col-xs-12 powered-by">
+                    Powered by: <a href="">FastCodeINX</a>
+                </p>
+            </footer>
+      
+        @Scripts.Render("~/bundles/bootstrap")
+        </div>
+        <script src="/Scripts/jquery-1.10.2.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="/Scripts/bootstrap.min.js"></script>
+        <script>
+            $('.carousel').carousel({
+                interval: 5000 //changes the speed
+            })
+        </script>
+    </body>
+   
+ 
+</html>

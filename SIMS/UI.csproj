@@ -1006,6 +1006,7 @@
     <Content Include="Content\charisma-app.css" />
     <Content Include="Content\elfinder.min.css" />
     <Content Include="Content\elfinder.theme.css" />
+    <Content Include="Content\half-slider.css" />
     <Content Include="Content\jquery-ui-1.8.21.custom.css" />
     <Content Include="Content\jquery.iphone.toggle.css" />
     <Content Include="Content\jquery.noty.css" />
@@ -1017,6 +1018,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="img\coming-soon-Website.jpg" />
     <Content Include="img\favicon.ico" />
+    <Content Include="img\Furniture\F1.jpg" />
+    <Content Include="img\Furniture\F2.jpg" />
+    <Content Include="img\Furniture\F3.jpg" />
+    <Content Include="img\Furniture\f5.jpg" />
     <Content Include="img\logo.png" />
     <Content Include="img\logo20.png" />
     <Content Include="img\star-half.png" />
@@ -1285,6 +1290,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\PageNotFound.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,6 +22,11 @@ namespace UI.Controllers
             UserRepository = new UserRepository();
 
         }
+        public ActionResult Index()
+        {
+          
+            return View();
+        }
 
         public ActionResult Login()
         {
