@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace SIMS
+namespace UI
 {
     public class RouteConfig
     {

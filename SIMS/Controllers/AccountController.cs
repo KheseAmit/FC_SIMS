@@ -9,7 +9,7 @@ using FC.Entities;
 using FC.Repositories;
 
 
-namespace SIMS.Controllers
+namespace UI.Controllers
 {
     
 

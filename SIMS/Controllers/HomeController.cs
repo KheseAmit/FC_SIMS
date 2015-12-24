@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using FC.Entities;
    
 
-namespace SIMS.Controllers
+namespace UI.Controllers
 {
     public class HomeController : Controller
     {
@@ -27,6 +27,11 @@ namespace SIMS.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult PageNotFound()
+        {
+            return View("PageNotFound");
         }
     }
 }

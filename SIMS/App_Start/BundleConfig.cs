@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace SIMS
+namespace UI
 {
     public class BundleConfig
     {

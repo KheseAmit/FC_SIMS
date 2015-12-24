@@ -127,7 +127,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SIMS_EmployeeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1016,6 +1015,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\coming-soon-Website.jpg" />
     <Content Include="img\favicon.ico" />
     <Content Include="img\logo.png" />
     <Content Include="img\logo20.png" />
@@ -1284,11 +1284,7 @@
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\SIMS_Employee\Create.cshtml" />
-    <Content Include="Views\SIMS_Employee\Delete.cshtml" />
-    <Content Include="Views\SIMS_Employee\Details.cshtml" />
-    <Content Include="Views\SIMS_Employee\Edit.cshtml" />
-    <Content Include="Views\SIMS_Employee\Index.cshtml" />
+    <Content Include="Views\Home\PageNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

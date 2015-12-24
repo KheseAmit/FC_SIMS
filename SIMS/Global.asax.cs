@@ -7,7 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 
 
-namespace SIMS
+namespace UI
 {
     public class MvcApplication : System.Web.HttpApplication
     {

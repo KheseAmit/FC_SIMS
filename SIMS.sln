@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIMS", "SIMS\SIMS.csproj", "{7350016E-218A-4713-89FC-DE0A82B45B55}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "SIMS\UI.csproj", "{7350016E-218A-4713-89FC-DE0A82B45B55}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FC.Entities", "SIMS.Entities\FC.Entities.csproj", "{95CFD0CA-9C15-4357-9B10-5A524AC7F483}"
 EndProject
