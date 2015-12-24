@@ -1018,6 +1018,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="img\coming-soon-Website.jpg" />
     <Content Include="img\favicon.ico" />
+    <Content Include="img\Furniture\E1.JPG" />
+    <Content Include="img\Furniture\e2.jpg" />
+    <Content Include="img\Furniture\E3.JPG" />
+    <Content Include="img\Furniture\E4.jpg" />
+    <Content Include="img\Furniture\EF1.jpg" />
     <Content Include="img\Furniture\F1.jpg" />
     <Content Include="img\Furniture\F2.jpg" />
     <Content Include="img\Furniture\F3.jpg" />
