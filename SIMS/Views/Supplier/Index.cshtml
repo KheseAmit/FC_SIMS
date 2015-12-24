@@ -8,10 +8,25 @@
 
   
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#SupplierTable').DataTable();
     });
 
+    function Submit() {
+ 
+        var form = $('#SupplierForm');
+
+      
+        $.ajax({
+            url: 'SaveAllDetails',
+            type: 'POST',
+            contentType: 'application/json',
+            data: form.serialize(),
+            success: function(result) {
+                // do something with the result of the AJAX call here
+            }
+        });
+    }
 </script>
 
 
@@ -173,72 +188,73 @@
         </tr>
     </tbody>
 </table>
+<form id="SupplierForm"  onsubmit="Submit()" >
+    <div class="box form-horizontal">
+        <div class="box-inner">
+            <div class="jumbotron">
 
-<div class="box form-horizontal">
-    <div class="box-inner">
-        <div class="jumbotron">
+                <div class="form-group">
+                    <div class="col-sm-5">
+                        <label>Name</label>
+                        @Html.TextBoxFor(c => c.Name, new { @class = "form-control input-group-lg reg_name" })
 
-            <div class="form-group">
-                <div class="col-sm-5">
-                    <label>Name</label>
-                    @Html.TextBoxFor(c => c.Name, new { @class = "form-control input-group-lg reg_name" })
+                        <label>Email</label>
+                        @Html.TextBoxFor(c => c.Email, new { @class = "form-control input-group-lg reg_name" })
+                    </div>
+                    <div class="col-sm-5">
+                        <label>Address</label>
+                        @Html.TextAreaFor(c => c.Address, new { @class = "form-control input-group-lg reg_name", style = "height:100px;" })
 
-                    <label>Email</label>
-                    @Html.TextBoxFor(c => c.Email, new { @class = "form-control input-group-lg reg_name" })
-                </div>
-                <div class="col-sm-5">
-                    <label>Address</label>
-                    @Html.TextAreaFor(c => c.Address, new { @class = "form-control input-group-lg reg_name", style = "height:100px;" })
+                    </div>
+                </div><!--/form-group-->
 
-                </div>
-            </div><!--/form-group-->
+                <div class="form-group">
+                    <div class="col-sm-5">
+                        <label>Contact Person 1</label>
+                        @Html.TextBoxFor(c => c.ContactPerson1, new { @class = "form-control input-group-lg reg_name" })
+                    </div>
+                    <div class="col-sm-5">
+                        <label>Contact Number 1</label>
+                        @Html.TextBoxFor(c => c.ContactNumber1, new { @class = "form-control input-group-lg reg_name" })
+                    </div>
+                </div><!--/form-group-->
 
-            <div class="form-group">
-                <div class="col-sm-5">
-                    <label>Contact Person 1</label>
-                    @Html.TextBoxFor(c => c.ContactPerson1, new { @class = "form-control input-group-lg reg_name" })
-                </div>
-                <div class="col-sm-5">
-                    <label>Contact Number 1</label>
-                    @Html.TextBoxFor(c => c.ContactNumber1, new { @class = "form-control input-group-lg reg_name" })
-                </div>
-            </div><!--/form-group-->
+                <div class="form-group">
+                    <div class="col-sm-5">
+                        <label>Contact Person 2</label>
+                        @Html.TextBoxFor(c => c.ContactPerson2, new { @class = "form-control input-group-lg reg_name" })
+                    </div>
+                    <div class="col-sm-5">
+                        <label>Contact Number 2</label>
+                        @Html.TextBoxFor(c => c.ContactNumber2, new { @class = "form-control input-group-lg reg_name" })
+                    </div>
+                </div><!--/form-group-->
 
-            <div class="form-group">
-                <div class="col-sm-5">
-                    <label>Contact Person 2</label>
-                    @Html.TextBoxFor(c => c.ContactPerson2, new { @class = "form-control input-group-lg reg_name" })
-                </div>
-                <div class="col-sm-5">
-                    <label>Contact Number 2</label>
-                    @Html.TextBoxFor(c => c.ContactNumber2, new { @class = "form-control input-group-lg reg_name" })
-                </div>
-            </div><!--/form-group-->
-
-            <div class="form-group">
-                <div class="col-sm-5">
-                    <label>Bank Name1</label>
-                    @Html.TextBoxFor(c => c.BankName1, new { @class = "form-control input-group-lg reg_name" })
-                </div>
-                <div class="col-sm-5">
-                    <label>Bank Account Number 1</label>
-                    @Html.TextBoxFor(c => c.BankAccountNumber1, new { @class = "form-control input-group-lg reg_name" })
-                </div>
-            </div><!--/form-group-->
+                <div class="form-group">
+                    <div class="col-sm-5">
+                        <label>Bank Name1</label>
+                        @Html.TextBoxFor(c => c.BankName1, new { @class = "form-control input-group-lg reg_name" })
+                    </div>
+                    <div class="col-sm-5">
+                        <label>Bank Account Number 1</label>
+                        @Html.TextBoxFor(c => c.BankAccountNumber1, new { @class = "form-control input-group-lg reg_name" })
+                    </div>
+                </div><!--/form-group-->
 
 
-            <div class="form-group">
-                <div class="col-sm-5">
-                    <label>Bank Name 2</label>
-                    @Html.TextBoxFor(c => c.BankName2, new { @class = "form-control input-group-lg reg_name" })
-                </div>
-                <div class="col-sm-5">
-                    <label>Bank Account Number 2</label>
-                    @Html.TextBoxFor(c => c.BankAccountNumber2, new { @class = "form-control input-group-lg reg_name" })
-                </div>
-            </div><!--/form-group-->
-            <button class="btn btn-primary">Submit</button>
-            <button class="btn">Clear</button>
+                <div class="form-group">
+                    <div class="col-sm-5">
+                        <label>Bank Name 2</label>
+                        @Html.TextBoxFor(c => c.BankName2, new { @class = "form-control input-group-lg reg_name" })
+                    </div>
+                    <div class="col-sm-5">
+                        <label>Bank Account Number 2</label>
+                        @Html.TextBoxFor(c => c.BankAccountNumber2, new { @class = "form-control input-group-lg reg_name" })
+                    </div>
+                </div><!--/form-group-->
+                <button class="btn btn-primary" >Submit</button>
+                <button class="btn">Clear</button>
+            </div>
         </div>
     </div>
-</div>
+</form>

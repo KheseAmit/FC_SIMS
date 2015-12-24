@@ -15,5 +15,12 @@ namespace SIMS.Controllers
             FC_Supplier objSupplier = new FC_Supplier();
             return View(objSupplier);
         }
+
+        [HttpPost]
+        public ActionResult SaveAllDetails(FC_Supplier model)
+        {
+            List<FC_Supplier> lstSupplier = new List<FC_Supplier>();
+            return View(lstSupplier);
+        }
     }
 }
