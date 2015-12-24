@@ -54,7 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FcEntities.cs" />
     <Compile Include="FC_Users.cs" />
-    <Compile Include="SIMS_Department.cs" />
+    <Compile Include="FC_Supplier.cs" />
     <Compile Include="SIMS_Designation.cs" />
     <Compile Include="SIMS_Employee.cs" />
     <Compile Include="SIMS_EmployeeType.cs" />

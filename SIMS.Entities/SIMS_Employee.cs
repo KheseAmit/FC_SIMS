@@ -33,8 +33,8 @@ namespace FC.Entities
         [ForeignKey("UpdatedBy")]
         public virtual FC_Users FC_Users_UpdatedBy { get; set; }
 
-        [ForeignKey("DepartmentId")]
-        public virtual SIMS_Department SIMS_Department_SIMS_Employee { get; set; }
+       
+ 
 
         [ForeignKey("DesignationId")]
         public virtual SIMS_Designation SIMS_Designation_SIMS_Employee { get; set; }
