@@ -132,6 +132,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\SupplierViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1298,6 +1299,7 @@
     <Content Include="Views\Home\PageNotFound.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Supplier\Index.cshtml" />
+    <Content Include="Views\Supplier\_SupplierList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1342,7 +1344,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51198</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

@@ -1,0 +1,42 @@
+﻿@model SIMS.Models.SupplierViewModels
+
+<div class="col-sm-6">
+    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+
+                <th>Name</th>
+                <th>Email</th>
+                 
+                <th class="no-sort">Action</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+
+                foreach (var objsupplier in Model.supplierList)
+                {
+                    <tr>
+                        <td>@Html.Raw(objsupplier.Name)</td>
+                        <td>@Html.Raw(objsupplier.ContactNumber1)</td>
+                        
+                        <td class="center">
+
+                            <a class="btn btn-info" href="#" onclick="EditSupplier(@objsupplier.Id)">
+                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                Edit
+                            </a>
+                            <a class="btn btn-danger" href="#"   onclick="DeleteSupplier(@objsupplier.Id)">
+                                <i class="glyphicon glyphicon-trash icon-white"></i>
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+         
+        </tbody>
+    </table>
+</div>

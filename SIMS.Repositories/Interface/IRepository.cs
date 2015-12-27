@@ -10,7 +10,7 @@ namespace FC.Repositories
     /// <typeparam name="TType">Type of entity.</typeparam>
     public interface IRepository<TType>
     {
-        TType Add(TType entity);
+        void Add(TType entity);
 
         bool Update(TType entity);
 
@@ -18,6 +18,6 @@ namespace FC.Repositories
 
         TType Get(Expression<Func<TType, bool>> filter);
 
-        ICollection<TType> GetAll();
+        IEnumerable<TType> GetAll();
     }
 }
