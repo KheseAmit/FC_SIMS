@@ -51,14 +51,54 @@
     <meta charset="utf-8">
     <title>@System.Configuration.ConfigurationManager.AppSettings["CompanyName"]</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
+    <style type="text/css">
+        #loading-indicator {
+             position: fixed;
+            text-align: center;
+            opacity: 1.7;
+               z-index: 1000;
+        margin: 300px auto;
+        padding: 10px;
+        width: 130px;
+        border-radius: 10px;
+        filter: alpha(opacity=100);
+        -moz-opacity: 1;
+         
+
+        }
+    </style>
     <!-- The styles -->
       <link id="bs-css" href="@Url.Content("/Content/bootstrap-united.min.css")" rel="stylesheet" type="text/css" />
  
     @*<link id="bs-css" href="../Content/bootstrap-united.min.css" rel="stylesheet">*@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    
+    <script type="text/javascript">
+        var myApp;
+        //myApp = myApp || (function () {
+        //    var pleaseWaitDiv = $('<div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false"><div class="modal-header"><h1>Processing...</h1></div><div class="modal-body"><div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div></div></div>');
+        //    return {
+        //        showPleaseWait: function () {
+        //            pleaseWaitDiv.modal();
+        //        },
+        //        hidePleaseWait: function () {
+        //            pleaseWaitDiv.modal('hide');
+        //        },
+
+        //    };
+        //})();
+
+        $(document).ajaxSend(function (event, request, settings) {
+             
+            //myapp.showPleaseWait();
+            $('#loading-indicator').show();
+        });
+
+        $(document).ajaxComplete(function (event, request, settings) {
+           $('#loading-indicator').hide();
+            //myapp.hidePleaseWait();
+        });
+    </script>
 
     <!-- jQuery -->
    
@@ -210,6 +250,7 @@
                 </div>
             </noscript>
             <div id="content" class="col-lg-10 col-sm-10">
+                <img src="~/img/ajax-loader.gif" id="loading-indicator" style="display:none" />
                 @RenderBody()
                 <!-- content starts -->
                

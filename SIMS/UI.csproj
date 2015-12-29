@@ -1018,6 +1018,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\ajax-loader.gif" />
     <Content Include="img\coming-soon-Website.jpg" />
     <Content Include="img\favicon.ico" />
     <Content Include="img\Furniture\E1.JPG" />
