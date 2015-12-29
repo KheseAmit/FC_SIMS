@@ -16,11 +16,19 @@
             data: $('#SupplierForm').serialize(),
             success: function (data) {
                 
-                $('#ErrorMessage').show(1000);
+                $('#SuccessMessage').show(1000);
+                $('html, body').animate({ scrollTop: 0 }, 800);
+                ClearAll();
                 $("#DivRef").html(data);
                 //alert('Supplier added successfully');
             }
         });
+    }
+
+    function ClearAll()
+    {
+        $('#SupplierForm').closest('form').find("input[type=text], textarea").val("");
+
     }
 
 </script>
