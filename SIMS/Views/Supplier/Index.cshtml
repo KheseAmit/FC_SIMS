@@ -9,14 +9,16 @@
 <script type="text/javascript">
  
     function SaveDocument() {
+        $('#SuccessMessage').hide(1000);
         $.ajax({
             url: 'SaveSupplier',
             type: 'POST',
             data: $('#SupplierForm').serialize(),
             success: function (data) {
-                alert(data);
+                
+                $('#ErrorMessage').show(1000);
                 $("#DivRef").html(data);
-                alert('Supplier added successfully');
+                //alert('Supplier added successfully');
             }
         });
     }
