@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FC.Repositories;
+using Microsoft.Ajax.Utilities;
 using SIMS.Models;
 using System.IO;
 
@@ -13,37 +14,47 @@ namespace SIMS.Controllers
     [RouteArea("Supplier")]
     public class SupplierController : Controller
     {
-
-        SupplierRepository SupplierDb = new SupplierRepository();
+        readonly SupplierRepository _supplierDb = new SupplierRepository();
+      
         // GET: Supplier
         public ActionResult Index()
         {
-            FC_Supplier objSupplier = new FC_Supplier();
-            SupplierViewModels viewmodel = new SupplierViewModels();
-            IEnumerable<FC_Supplier> lstSupplier = SupplierDb.GetAll();
-            viewmodel.supplierList = lstSupplier.ToList();
-            ViewBag.SupplierList = viewmodel;
+            var objSupplier = new FC_Supplier();
+            GetSupplierListModel();
             return View(objSupplier);
         }
 
         [HttpPost]
         public ActionResult SaveSupplier(FC_Supplier model)
         {
-            SupplierViewModels viewmodel = new SupplierViewModels();
-            SupplierDb.Add(model);
-            IEnumerable<FC_Supplier> lstSupplier = SupplierDb.GetAll();
-           
-            viewmodel.supplierList = lstSupplier.ToList();
+            _supplierDb.SaveChanges(model);
+            return PartialView("_SupplierList", GetSupplierListModel());
+        }
+
+        [HttpGet]
+        public ActionResult EditSupplier(int supplierId)
+        {
+            var supplier = _supplierDb.Get(supplierId);
+            return PartialView("_SupplierForm", supplier);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteSupplier(int supplierId)
+        {
+            var supplier = _supplierDb.Get(supplierId);
+            supplier.IsDeleted = true;
+            _supplierDb.SaveChanges(supplier);
+            return PartialView("_SupplierList", GetSupplierListModel());
+        }
+
+
+
+        public SupplierViewModels GetSupplierListModel()
+        {
+            var lstSupplier = _supplierDb.GetAll();
+            var viewmodel = new SupplierViewModels {supplierList = lstSupplier.ToList()};
             ViewBag.SupplierList = viewmodel;
-            // return Json(lstSupplier.ToList(), JsonRequestBehavior.AllowGet);
-          //  var modelhtml = RenderRazorViewToString("_SupplierList", viewmodel);
-            //return Json(new
-            //{
-            //    Success = true,
-            //    PartialViewHtml = modelhtml
-            //});
-            return PartialView("_SupplierList", viewmodel);
-            //   return PartialView(lstSupplier);
+            return viewmodel;
         }
 
         public string RenderRazorViewToString(string viewName, object model)

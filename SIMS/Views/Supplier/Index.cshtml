@@ -6,7 +6,9 @@
 
 <h2>Supplier</h2>
 <div class="form-group">
-    @{Html.RenderPartial("_SupplierForm", this.Model);}
+    <div id="divSupplierForm">
+        @{Html.RenderPartial("_SupplierForm", this.Model);}
+    </div>
     <div id="DivRef" class="form-group">
         @{
             if (ViewBag.SupplierList != null)

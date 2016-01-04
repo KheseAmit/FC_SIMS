@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -15,29 +16,21 @@ namespace FC.Repositories
     {
         private FcEntities dbcontext;
 
-        public void Add(FC_Supplier entity)
+        public void SaveChanges(FC_Supplier entity)
         {
             using (dbcontext = new FcEntities())
             {
-                dbcontext.FC_Supplier.Add(entity);
+                dbcontext.FC_Supplier.AddOrUpdate(entity);
                 dbcontext.SaveChanges();
             }
-
         }
 
-        public bool Delete(FC_Supplier entity)
+        public FC_Supplier Get(int id)
         {
-            if (dbcontext.FC_Supplier.Contains(entity))
+            using (var newdbcontext = new FcEntities())
             {
-                dbcontext.FC_Supplier.Add(entity);
+                return newdbcontext.FC_Supplier.FirstOrDefault(c => c.Id == id);
             }
-            dbcontext.SaveChanges();
-            return true;
-        }
-
-        public FC_Supplier Get(Expression<Func<FC_Supplier, bool>> filter)
-        {
-            throw new NotImplementedException();
         }
 
         public IEnumerable<FC_Supplier> GetAll()
@@ -48,12 +41,5 @@ namespace FC.Repositories
             return SupplierList;
 
         }
-
-        public bool Update(FC_Supplier entity)
-        {
-            throw new NotImplementedException();
-        }
     }
-
-
 }

@@ -1,6 +1,6 @@
 ﻿@model SIMS.Models.SupplierViewModels
 <script type="text/javascript" charset="utf-8">
-    $('.datatable').dataTable({
+    var dataTable = $('.datatable').dataTable({
         "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-12'i><'col-md-12 center-block'p>>",
         "sPaginationType": "bootstrap",
         "oLanguage": {
@@ -8,6 +8,23 @@
 
         }
     });
+
+    function DeleteSupplier(supplierid) {
+        $('#SuccessMessage').hide(1000);
+        if (confirm('Are you sure want to delete supplier?')) {
+            $.ajax({
+                url: 'DeleteSupplier',
+                type: 'get',
+                data: { supplierId: supplierid },
+                success: function(data) {
+                    $('html, body').animate({ scrollTop: 0 }, 800);
+                    $('#SuccessMessage').html('Supplier deleted successfully!');
+                    $('#SuccessMessage').show(1000);
+                    $("#DivRef").html(data);
+                }
+            });
+        }
+    }
 </script>
 
 <div class="col-sm-6">
@@ -34,7 +51,7 @@
                         
                         <td class="center">
 
-                            <a class="btn btn-info" href="#" onclick="EditSupplier(@objsupplier.Id)">
+                            <a class="btn btn-info" href="#" onclick="EditDocument(@objsupplier.Id)">
                                 <i class="glyphicon glyphicon-edit icon-white"></i>
                                 Edit
                             </a>

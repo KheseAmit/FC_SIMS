@@ -1,4 +1,5 @@
 ﻿@model FC.Entities.FC_Supplier
+
 <script type="text/javascript">
 
     function SaveDocument() {
@@ -18,6 +19,20 @@
         });
     }
 
+    function EditDocument(supplierid) {
+        $('#SuccessMessage').hide(1000);
+        $.ajax({
+            url: 'EditSupplier',
+            type: 'get',
+            data: { supplierId: supplierid},
+            success: function (data) {             
+                $('html, body').animate({ scrollTop: 0 }, 800);
+                $("#divSupplierForm").html(data);
+                //alert('Supplier added successfully');
+            }
+        });
+    }
+
     function ClearAll() {
         $('#SupplierForm').closest('form').find("input[type=text], textarea").val("");
 
@@ -26,7 +41,7 @@
 </script>
 
 <form id="SupplierForm">
-    <div class="col-sm-6" style="padding-left:0px!important;">
+    <div class="col-sm-6" style="padding-left:0px!important;" >
         <div class="box form-horizontal">
             <div class="box-inner">
                 <div class="jumbotron">
@@ -34,6 +49,7 @@
 
                         <label>Name</label>
                         @Html.TextBoxFor(c => c.Name, new { @class = "form-control input-group-lg reg_name" })
+                        @Html.HiddenFor((c=>c.Id))
                     </div>
                     <div class="form-group">
                         <label>Email</label>

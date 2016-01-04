@@ -10,13 +10,13 @@ namespace FC.Repositories
     /// <typeparam name="TType">Type of entity.</typeparam>
     public interface IRepository<TType>
     {
-        void Add(TType entity);
+        void SaveChanges(TType entity);
 
-        bool Update(TType entity);
+        //bool Update(TType entity);
 
-        bool Delete(TType entity);
+        //bool Delete(TType entity);
 
-        TType Get(Expression<Func<TType, bool>> filter);
+        TType Get(int id);
 
         IEnumerable<TType> GetAll();
     }
