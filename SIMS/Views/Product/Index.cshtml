@@ -1,0 +1,23 @@
+﻿@model FC.Entities.FC_Product
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Product</h2>
+
+<div class="form-group">
+    <div id="divProductForm">
+        @{Html.RenderPartial("_ProductForm", this.Model);}
+    </div>
+    <div id="DivRef" class="form-group">
+        @{
+            if (ViewBag.listProduct != null)
+            {
+                var listProduct = (SIMS.Models.ProductViewModels)ViewBag.ProductList;
+
+                Html.RenderPartial("_ProductList", listProduct);
+            }
+        }
+    </div>
+</div>

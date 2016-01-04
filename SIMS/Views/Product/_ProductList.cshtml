@@ -1,0 +1,71 @@
+﻿
+@model SIMS.Models.ProductViewModels
+
+<script type="text/javascript" charset="utf-8">
+    var dataTable = $('.datatable').dataTable({
+        "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-12'i><'col-md-12 center-block'p>>",
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sLengthMenu": "_MENU_ records per page"
+
+        }
+    });
+
+    function DeleteProduct(Productid) {
+        $('#SuccessMessage').hide(1000);
+        if (confirm('Are you sure want to delete Product?')) {
+            $.ajax({
+                url: 'DeleteProduct',
+                type: 'get',
+                data: { ProductId: Productid },
+                success: function(data) {
+                    $('html, body').animate({ scrollTop: 0 }, 800);
+                    $('#SuccessMessage').html('Product deleted successfully!');
+                    $('#SuccessMessage').show(1000);
+                    $("#DivRef").html(data);
+                }
+            });
+        }
+    }
+</script>
+
+<div class="col-sm-6">
+    <table id="example1" class="table table-striped table-bordered bootstrap-datatable datatable responsive" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+
+                <th>Name</th>
+                <th>Contact No</th>
+
+                <th class="no-sort">Action</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+
+                foreach (var objProduct in Model.productList)
+                {
+                    <tr>
+                        <td>@Html.Raw(objProduct.Name)</td>
+                        <td>@Html.Raw(objProduct.ProductCode)</td>
+
+                        <td class="center">
+
+                            <a class="btn btn-info" href="#" onclick="EditDocument(@objProduct.Id)">
+                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                Edit
+                            </a>
+                            <a class="btn btn-danger" href="#" onclick="DeleteProduct(@objProduct.Id)">
+                                <i class="glyphicon glyphicon-trash icon-white"></i>
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

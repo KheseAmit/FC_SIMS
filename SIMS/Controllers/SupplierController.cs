@@ -15,7 +15,8 @@ namespace SIMS.Controllers
     public class SupplierController : Controller
     {
         readonly SupplierRepository _supplierDb = new SupplierRepository();
-      
+
+        #region Action
         // GET: Supplier
         public ActionResult Index()
         {
@@ -47,8 +48,9 @@ namespace SIMS.Controllers
             return PartialView("_SupplierList", GetSupplierListModel());
         }
 
+        #endregion
 
-
+        #region Methods
         public SupplierViewModels GetSupplierListModel()
         {
             var lstSupplier = _supplierDb.GetAll();
@@ -69,5 +71,6 @@ namespace SIMS.Controllers
                 return sw.GetStringBuilder().ToString();
             }
         }
+        #endregion
     }
 }

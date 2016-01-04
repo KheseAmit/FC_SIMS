@@ -22,9 +22,11 @@ namespace FC.Entities
 
         public virtual DbSet<FC_Users> FC_Users { get; set; }
         public virtual DbSet<FC_Supplier> FC_Supplier { get; set; }
+        public virtual DbSet<FC_Product> FC_Product { get; set; }
         public virtual DbSet<SIMS_Designation> SIMS_Designation { get; set; }
         public virtual DbSet<SIMS_Employee> SIMS_Employee { get; set; }
         public virtual DbSet<SIMS_EmployeeType> SIMS_EmployeeType { get; set; }
+
  
     }
 }
