@@ -53,11 +53,12 @@ namespace SIMS.Controllers
         public ProductViewModels GetProductListModel()
         {
             var lstProduct = _productDb.GetAll();
-            var viewmodel = new ProductViewModels { productList = lstProduct.ToList() };
-            ViewBag.ProductList = viewmodel;
-
             var lstSupplier = _supplierDb.GetAll();
-            ViewBag.SupplierList = viewmodel;
+
+            var viewmodel = new ProductViewModels { productList = lstProduct.ToList() };
+
+            ViewBag.ProductList = viewmodel;
+            ViewBag.SupplierList = lstSupplier;
 
             return viewmodel;
         }

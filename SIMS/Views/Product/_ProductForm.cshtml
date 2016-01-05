@@ -109,9 +109,9 @@
                         <div class="col-sm-7" style="padding-left:0px!important;">
                             <label>Supplier </label>
                             @{
-                                if (ViewBag.Suppliers != null)
+                                if (ViewBag.SupplierList != null)
                                 {
-                                    @Html.DropDownListFor(x => x.SupplierId, new SelectList(ViewBag.Suppliers, "id", "Name"));
+                                    @Html.DropDownListFor(x => x.SupplierId, new SelectList(ViewBag.SupplierList, "id", "Name"));
                                 }
 
                             }
