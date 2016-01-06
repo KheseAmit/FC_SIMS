@@ -38,8 +38,10 @@ namespace UI
                         "~/Scripts/BootstrapJS/jquery.autogrow-textarea.js",
                         "~/Scripts/BootstrapJS/jquery.uploadify-3.1.min.js",
                         "~/Scripts/BootstrapJS/jquery.history.js",
+                        "~/Scripts/BootstrapJS/chosen.jquery.js",
                         "~/Scripts/BootstrapJS/charisma.js"));
-
+     
+ 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       //"~/Content/bootstrap.css",
                       //"~/Content/site.css",
@@ -58,7 +60,8 @@ namespace UI
                        "~/Content/jquery.iphone.toggle.css",
                        "~/Content/uploadify.css",
                            "~/Content/half-slider.css",
-                       "~/Content/animate.min.css"));
+                               "~/Content/chosen.css",
+                       "~/Content/animate.min.css"));      
 
         }
     }

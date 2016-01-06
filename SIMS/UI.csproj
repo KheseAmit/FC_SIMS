@@ -132,6 +132,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\FcAuthorizeAttribute.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ProductViewModels.cs" />
     <Compile Include="Models\SupplierViewModels.cs" />
@@ -1008,6 +1009,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\charisma-app.css" />
+    <Content Include="Content\chosen.css" />
     <Content Include="Content\elfinder.min.css" />
     <Content Include="Content\elfinder.theme.css" />
     <Content Include="Content\half-slider.css" />
@@ -1021,6 +1023,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\ajax-loader.gif" />
+    <Content Include="img\chosen-sprite%402x.png" />
+    <Content Include="img\chosen-sprite.png" />
     <Content Include="img\coming-soon-Website.jpg" />
     <Content Include="img\favicon.ico" />
     <Content Include="img\Furniture\E1.JPG" />
@@ -1247,6 +1251,7 @@
     <None Include="Properties\PublishProfiles\Default_Profile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\BootstrapJS\charisma.js" />
+    <Content Include="Scripts\BootstrapJS\chosen.jquery.js" />
     <Content Include="Scripts\BootstrapJS\gulpfile.js" />
     <Content Include="Scripts\BootstrapJS\init-chart.js" />
     <Content Include="Scripts\BootstrapJS\jquery.autogrow-textarea.js" />

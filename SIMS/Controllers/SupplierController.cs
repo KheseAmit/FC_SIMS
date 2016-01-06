@@ -8,9 +8,11 @@ using FC.Repositories;
 using Microsoft.Ajax.Utilities;
 using SIMS.Models;
 using System.IO;
+using SIMS.Helper;
 
 namespace SIMS.Controllers
 {
+    [FcAuthorize]
     [RouteArea("Supplier")]
     public class SupplierController : Controller
     {

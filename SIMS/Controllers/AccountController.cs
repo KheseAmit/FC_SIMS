@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using FC.Entities;
 using FC.Repositories;
 
@@ -40,7 +41,9 @@ namespace UI.Controllers
             int id = 1;
             if (UserRepository.IsValidUser(fcUser,out id))
             {
+                FormsAuthentication.SetAuthCookie(fcUser.Name, false);
                 Session["UserId"] = id;
+                Session["UserRole"] = fcUser.IsAdmin;
                 return RedirectToAction("index", "Home");
             }
             else

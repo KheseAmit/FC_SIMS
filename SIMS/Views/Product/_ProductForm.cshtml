@@ -40,6 +40,8 @@
 
 </script>
 
+
+
 <form id="ProductForm">
     <div class="col-sm-6" style="padding-left:0px!important;">
         <div class="box form-horizontal">
@@ -86,9 +88,9 @@
                             @{
                                 if (ViewBag.ProductTypes != null)
                                 {
-                                    Html.DropDownListFor(x => x.ProductTypeId, new SelectList(ViewBag.ProductTypes, "id", "Name"));
+                                    Html.DropDownListFor(x => x.ProductTypeId, new SelectList(ViewBag.ProductTypes, "id", "Name"), new { @class = "chosen-select" });
                                 }
-
+                                
                             }
 
                         </div>
@@ -97,7 +99,7 @@
                             @{
                                 if (ViewBag.Manufactures != null)
                                 {
-                                    @Html.DropDownListFor(x => x.ManufactureId, new SelectList(ViewBag.Manufactures, "id", "Name"))
+                                    @Html.DropDownListFor(x => x.ManufactureId, new SelectList(ViewBag.Manufactures, "id", "Name"), new { @class = "chosen-select" })
                                     ;
                                 }
 
@@ -111,7 +113,7 @@
                             @{
                                 if (ViewBag.SupplierList != null)
                                 {
-                                    @Html.DropDownListFor(x => x.SupplierId, new SelectList(ViewBag.SupplierList, "id", "Name"));
+                                    @Html.DropDownListFor(x => x.SupplierId, new SelectList(ViewBag.SupplierList, "id", "Name"), new { @class = "chosen-select", @style="width:100%;"});
                                 }
 
                             }

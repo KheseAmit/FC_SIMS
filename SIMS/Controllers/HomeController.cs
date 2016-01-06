@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FC.Entities;
-   
+using SIMS.Helper;
+
 
 namespace UI.Controllers
 {
+    [FcAuthorize]
     public class HomeController : Controller
     {
         public ActionResult Index()

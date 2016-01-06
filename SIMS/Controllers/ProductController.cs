@@ -1,5 +1,6 @@
 ﻿using FC.Entities;
 using FC.Repositories;
+using SIMS.Helper;
 using SIMS.Models;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ using System.Web.Mvc;
 
 namespace SIMS.Controllers
 {
+    [FcAuthorize]
+    [RouteArea("Product")]
     public class ProductController : Controller
     {
 
