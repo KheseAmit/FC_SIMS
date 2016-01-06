@@ -13,7 +13,7 @@ using SIMS.Helper;
 namespace SIMS.Controllers
 {
     [FcAuthorize]
-    [RouteArea("Supplier")]
+    [RoutePrefix("Supplier")]
     public class SupplierController : Controller
     {
         readonly SupplierRepository _supplierDb = new SupplierRepository();
@@ -22,6 +22,7 @@ namespace SIMS.Controllers
         // GET: Supplier
         public ActionResult Index()
         {
+            
             var objSupplier = new FC_Supplier();
             GetSupplierListModel();
             return View(objSupplier);

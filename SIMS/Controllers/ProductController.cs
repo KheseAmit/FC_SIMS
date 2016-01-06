@@ -12,7 +12,7 @@ using System.Web.Mvc;
 namespace SIMS.Controllers
 {
     [FcAuthorize]
-    [RouteArea("Product")]
+    [RoutePrefix("Product")]
     public class ProductController : Controller
     {
 
@@ -20,9 +20,15 @@ namespace SIMS.Controllers
         readonly SupplierRepository _supplierDb = new SupplierRepository();
         #region Action
         // GET: Product
-        public ActionResult Index()
+
+        [Route("{supplierId}", Name = "View")]
+        public ActionResult Index(int supplierId = 0)
         {
             var objProduct = new FC_Product();
+
+            if (supplierId != 0)
+                objProduct.SupplierId = supplierId;
+
             GetProductListModel();
             return View(objProduct);
         }
@@ -62,7 +68,7 @@ namespace SIMS.Controllers
 
             ViewBag.ProductList = viewmodel;
             ViewBag.SupplierList = lstSupplier;
-
+        
             return viewmodel;
         }
         #endregion

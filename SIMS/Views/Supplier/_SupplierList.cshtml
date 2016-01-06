@@ -50,7 +50,14 @@
                         <td>@Html.Raw(objsupplier.ContactNumber1)</td>
                         
                         <td class="center">
-
+                            <a class="btn btn-success" href="~/Product/@objsupplier.Id">
+                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                Product
+                            </a>
+                            @*<a class="btn btn-block" href="#">*@
+                            @*<i class="glyphicon glyphicon-edit icon-white"></i>
+                            @Html.ActionLink("Add Product", "Index", "Product", new { SupplierId = @objsupplier.Id }, null)*@
+                            @*</a>*@
                             <a class="btn btn-info" href="#" onclick="EditDocument(@objsupplier.Id)">
                                 <i class="glyphicon glyphicon-edit icon-white"></i>
                                 Edit

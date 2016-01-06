@@ -113,7 +113,7 @@
                             @{
                                 if (ViewBag.SupplierList != null)
                                 {
-                                    @Html.DropDownListFor(x => x.SupplierId, new SelectList(ViewBag.SupplierList, "id", "Name"), new { @class = "chosen-select", @style="width:100%;"});
+                                    @Html.DropDownListFor(x => x.SupplierId, new SelectList(ViewBag.SupplierList, "id", "Name"), "Select supplier", new { @class = "chosen-select", @style = "width:100%;" });
                                 }
 
                             }
