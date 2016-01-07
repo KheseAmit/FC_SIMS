@@ -59,8 +59,9 @@ namespace UI
                        "~/Content/elfinder.theme.css",
                        "~/Content/jquery.iphone.toggle.css",
                        "~/Content/uploadify.css",
-                           "~/Content/half-slider.css",
-                               "~/Content/chosen.css",
+                       "~/Content/half-slider.css",
+                       "~/Content/chosen.css",
+                       "~/Content/rupeefont/rupeefont.css",
                        "~/Content/animate.min.css"));      
 
         }
