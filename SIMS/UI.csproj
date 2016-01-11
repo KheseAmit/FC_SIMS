@@ -126,6 +126,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="Helper\FcAuthorizeAttribute.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ProductViewModels.cs" />
+    <Compile Include="Models\PurchaseOrderModel.cs" />
     <Compile Include="Models\SupplierViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1305,6 +1307,10 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\_ProductForm.cshtml" />
     <Content Include="Views\Product\_ProductList.cshtml" />
+    <Content Include="Views\Billing\PurchaseOrder.cshtml" />
+    <Content Include="Views\Billing\_PurchaseOrderForm.cshtml" />
+    <Content Include="Views\Billing\_PurchaseOrderList.cshtml" />
+    <None Include="Views\Billing\_PurchaseOrderProductsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

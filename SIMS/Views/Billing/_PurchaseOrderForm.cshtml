@@ -1,0 +1,186 @@
+﻿
+@model SIMS.Models.PurchaseOrderModel
+
+<script type="text/javascript">
+
+    function SaveDocument() {
+        $('#SuccessMessage').hide(1000);
+
+        $.ajax({
+            url: 'SavePurchaseOrder',
+            type: 'POST',
+            data: $('#PurchaseOrderForm').serialize(),
+            success: function (data) {
+
+                $('#SuccessMessage').show(1000);
+                $('html, body').animate({ scrollTop: 0 }, 800);
+                ClearAll();
+                $("#DivRef").html(data);
+                //alert('PurchaseOrder added successfully');
+            }
+        });
+    }
+
+    function EditDocument(PurchaseOrderid) {
+        $('#SuccessMessage').hide(1000);
+        $.ajax({
+            url: 'EditPurchaseOrder',
+            type: 'get',
+            data: { PurchaseOrderId: PurchaseOrderid },
+            success: function (data) {
+                $('html, body').animate({ scrollTop: 0 }, 800);
+                $("#divPurchaseOrderForm").html(data);
+                //alert('PurchaseOrder added successfully');
+            }
+        });
+    }
+
+    function ClearAll() {
+        $('#PurchaseOrderForm').closest('form').find("input[type=text], textarea").val("");
+
+    }
+
+    function AddProductInorder() {
+
+        var productId= $('#PurchaseOrderProductModel_Product_Id').val();
+        var quantity= $('#PurchaseOrderProductModel_Quantity').val();
+        $.ajax({
+            url: 'AddProductInorder',
+            type: 'get',
+            data: { productId: productId, quantity: quantity },
+            success: function (data) {
+       
+                $("#divPOAdd").html(data);
+                $('#POModel').modal('toggle');
+                //alert('PurchaseOrder added successfully');
+            }
+        });
+ 
+        // Automatically add a first row of data
+
+    }
+</script>
+
+
+
+<form id="PurchaseOrderForm">
+    <div class="col-sm-6" style="padding-left:0px!important;">
+        <div class="box form-horizontal">
+            <div class="box-inner">
+                <div class="jumbotron">
+                    <div class="form-group">
+                        <div class="col-sm-7" style="padding-left:0px!important;">
+                            <label>Supplier </label>
+                            @{
+                                if (ViewBag.SupplierList != null)
+                                {
+                                    @Html.DropDownListFor(x => x.SupplierId, new SelectList(ViewBag.SupplierList, "id", "Name"), "Select supplier", new { @class = "chosen-select", @style = "width:100%;" });
+                                }
+
+                            }
+
+
+                        </div>
+                        <div class="col-sm-5" style="padding-right:0px!important;">
+                            <label>Date </label>
+                            @Html.TextBoxFor(c => c.POdate, new { @class = "form-control input-group-lg reg_name", disabled = "disabled", Value = System.DateTime.Now.Date.ToString("MM/dd/yyyy") })
+                        </div>
+                       
+
+                        @Html.HiddenFor((c => c.Id))
+                    </div>
+                   
+             
+                    <div class="form-group">
+                        <h3>
+                            Products details: <a class="btn btn-info" data-toggle="modal" data-target="#POModel">
+                                <i class="glyphicon glyphicon-new-window icon-white"></i>
+                                New
+                            </a>
+                        </h3>
+                        <div id="divPOAdd">
+                            @{
+
+                                Html.RenderPartial("_PurchaseOrderProductsList", Model);
+
+                            }
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Comment</label>
+                        @Html.TextAreaFor(c => c.Comment, new { @class = "form-control input-group-lg reg_name" })
+
+
+                    </div><!--/form-group-->
+
+
+
+
+
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="button" onclick="SaveDocument()">Save PO</button>
+                        <button class="btn">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</form>
+<script type="text/javascript">
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "95%" }
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+</script>
+<div id="POModel" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Product Quantity</h4>
+            </div>
+            <div class="modal-body" style="height: 120px;">
+                <div class="form-group">
+                    <div class="col-sm-7" style="padding-left:0px!important;">
+
+                        <label>Product</label>
+                        @{
+                            if (ViewBag.SupplierList != null)
+                            {
+                                @Html.DropDownListFor(x => x.PurchaseOrderProductModel.Product.Id, new SelectList(ViewBag.ProductList, "id", "Name"), "Select product", new { @class = "chosen-select", @style = "width:100%;" });
+                            }
+
+                        }
+                    </div>
+                    <div class="col-sm-5" style="padding-right:0px!important;">
+                        <label>Quantity</label>
+                        @Html.TextBoxFor(c => c.PurchaseOrderProductModel.Quantity, new { @class = "form-control input-group-lg reg_name" })
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" onclick="AddProductInorder()">Add</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    $('#POModel').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen('destroy').chosen();
+    });
+</script>

@@ -1,0 +1,24 @@
+﻿@model SIMS.Models.PurchaseOrderModel
+@{
+    ViewBag.Title = "PurchaseOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Purchase Order</h2>
+ 
+<div class="form-group">
+    <div id="divPOForm">
+        @{Html.RenderPartial("_PurchaseOrderForm", this.Model);}
+    </div>
+    <div id="DivRef" class="form-group">
+        @{
+            if (ViewBag.PurchaseOrderList != null)
+            {
+                var listPurchaseOrder = (SIMS.Models.PurchaseOrderModel)ViewBag.PurchaseOrderList;
+
+                Html.RenderPartial("_PurchaseOrderList", listPurchaseOrder);
+            }
+        }
+    </div>
+</div>
+

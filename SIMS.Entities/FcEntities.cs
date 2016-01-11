@@ -27,6 +27,9 @@ namespace FC.Entities
         public virtual DbSet<FC_Product> FC_Product { get; set; }
         public virtual DbSet<FC_ProductType> FC_ProductType { get; set; }
         public virtual DbSet<FC_Manufacture> FC_Manufacture { get; set; }
+        public virtual DbSet<FC_PurchaseOrder> FC_PurchaseOrder { get; set; }
+        public virtual DbSet<FC_PurchaseOrderProducts> FC_PurchaseOrderProducts { get; set; }
+
         public virtual DbSet<SIMS_Designation> SIMS_Designation { get; set; }
         public virtual DbSet<SIMS_Employee> SIMS_Employee { get; set; }
         public virtual DbSet<SIMS_EmployeeType> SIMS_EmployeeType { get; set; }

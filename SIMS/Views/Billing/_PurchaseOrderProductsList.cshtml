@@ -1,0 +1,77 @@
+﻿@model SIMS.Models.PurchaseOrderModel
+
+<script type="text/javascript" charset="utf-8">
+    var dataTable = $('.datatable').dataTable({
+        "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-12'i><'col-md-12 center-block'p>>",
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sLengthMenu": "_MENU_ records per page"
+
+        }
+    });
+
+    function DeleteProductPO(POid) {
+        $('#SuccessMessage').hide(1000);
+        if (confirm('Are you sure want to delete Purchase Order?')) {
+            $.ajax({
+                url: 'DeletePurchaseOrder',
+                type: 'get',
+                data: { POid: POid },
+                success: function(data) {
+                    $('html, body').animate({ scrollTop: 0 }, 800);
+                    $('#SuccessMessage').html('Purchase Order deleted successfully!');
+                    $('#SuccessMessage').show(1000);
+                    $("#DivRef").html(data);
+                }
+            });
+        }
+    }
+</script>
+<style>
+        .dataTables_filter, .dataTables_info { display: none; }
+        .dataTables_wrapper .fg-toolbar { display: none; }
+        .dataTables_length, .dataTables_info { display: none; }
+        .pagination{margin:0px;}
+    </style>
+
+
+    <table id="PODataTable" class="table table-striped table-bordered bootstrap-datatable datatable responsive" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Product code</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Amount</th>
+                <th>Action</th>
+               
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+           
+                foreach (var objPO in Model.PurchaseOrderProductModelList)
+                {
+                <tr>
+                    <td>@Html.Raw(objPO.Product.ProductCode)</td>
+                    <td>@Html.Raw(objPO.Product.Name)</td>
+                    <td>@Html.Raw(objPO.Quantity)</td>
+                    <td>@Html.Raw(objPO.Product.PurchasePrice)</td>
+                    <td>@Html.Raw(objPO.ProductTotalAmount)</td>
+                    <td class="center">
+
+                     
+                        <a class="btn btn-danger" href="#" onclick="DeleteProductPO(@objPO.PurchaseOrderProductId)">
+                            <i class="glyphicon glyphicon-trash icon-white"></i>
+                            Remove
+                        </a>
+                    </td>
+                </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+ 
