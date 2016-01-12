@@ -10,29 +10,27 @@
         }
     });
 
-    function DeleteProductPO(POid) {
+    function DeleteProductPO(PurchaseOrderProductId) {
         $('#SuccessMessage').hide(1000);
         if (confirm('Are you sure want to delete Purchase Order?')) {
             $.ajax({
-                url: 'DeletePurchaseOrder',
+                url: 'RemoveProductInorder',
                 type: 'get',
-                data: { POid: POid },
+                data: { PurchaseOrderProductId: PurchaseOrderProductId },
                 success: function(data) {
-                    $('html, body').animate({ scrollTop: 0 }, 800);
-                    $('#SuccessMessage').html('Purchase Order deleted successfully!');
-                    $('#SuccessMessage').show(1000);
-                    $("#DivRef").html(data);
+            
+                    $("#divPOAdd").html(data);
                 }
             });
         }
     }
 </script>
 <style>
-        .dataTables_filter, .dataTables_info { display: none; }
-        .dataTables_wrapper .fg-toolbar { display: none; }
-        .dataTables_length, .dataTables_info { display: none; }
-        .pagination{margin:0px;}
-    </style>
+    .dataTables_filter, .dataTables_info { display: none; }
+    .dataTables_wrapper .fg-toolbar { display: none; }
+    .dataTables_length, .dataTables_info { display: none; }
+    .pagination{margin:0px;}
+</style>
 
 
     <table id="PODataTable" class="table table-striped table-bordered bootstrap-datatable datatable responsive" cellspacing="0" width="100%">
@@ -58,10 +56,11 @@
                     <td>@Html.Raw(objPO.Product.ProductCode)</td>
                     <td>@Html.Raw(objPO.Product.Name)</td>
                     <td>@Html.Raw(objPO.Quantity)</td>
-                    <td>@Html.Raw(objPO.Product.PurchasePrice)</td>
-                    <td>@Html.Raw(objPO.ProductTotalAmount)</td>
+                    <td><span class="WebRupee">&#x20B9; </span>@Html.Raw(objPO.Product.PurchasePrice)</td>
+                    <td> <span class="WebRupee">&#x20B9; </span>@Html.Raw(objPO.ProductTotalAmount)</td>
                     <td class="center">
 
+     
                      
                         <a class="btn btn-danger" href="#" onclick="DeleteProductPO(@objPO.PurchaseOrderProductId)">
                             <i class="glyphicon glyphicon-trash icon-white"></i>
@@ -75,3 +74,35 @@
         </tbody>
     </table>
  
+<br />
+@{
+    if (ViewBag.POTotalAmount != null)
+    {
+        <h4 style="float:right;padding-right:5%">
+  
+            <label>Total Amount: </label>
+            <u style="font-weight: bold;white-space:normal;font-size:100%;" class="label label-primary">
+                <span class="WebRupee">&#x20B9; </span>
+                @Html.Raw((int)ViewBag.POTotalAmount)
+
+
+            </u>
+
+            
+        </h4>
+    }
+}
+    
+ 
+<div id="POTemplateModel" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content" style="width:612px;height:792px;">
+
+            @{
+                Html.RenderPartial("POTemplate", Model);
+            }
+        </div>
+    </div>
+</div>

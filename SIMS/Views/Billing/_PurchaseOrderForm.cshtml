@@ -10,7 +10,7 @@
             url: 'SavePurchaseOrder',
             type: 'POST',
             data: $('#PurchaseOrderForm').serialize(),
-            success: function (data) {
+            success: function(data) {
 
                 $('#SuccessMessage').show(1000);
                 $('html, body').animate({ scrollTop: 0 }, 800);
@@ -27,7 +27,7 @@
             url: 'EditPurchaseOrder',
             type: 'get',
             data: { PurchaseOrderId: PurchaseOrderid },
-            success: function (data) {
+            success: function(data) {
                 $('html, body').animate({ scrollTop: 0 }, 800);
                 $("#divPurchaseOrderForm").html(data);
                 //alert('PurchaseOrder added successfully');
@@ -42,24 +42,57 @@
 
     function AddProductInorder() {
 
-        var productId= $('#PurchaseOrderProductModel_Product_Id').val();
-        var quantity= $('#PurchaseOrderProductModel_Quantity').val();
+        var productId = $('#PurchaseOrderProductModel_Product_Id').val();
+        var quantity = $('#PurchaseOrderProductModel_Quantity').val();
         $.ajax({
             url: 'AddProductInorder',
             type: 'get',
             data: { productId: productId, quantity: quantity },
-            success: function (data) {
-       
+            success: function(data) {
                 $("#divPOAdd").html(data);
+                $('#PurchaseOrderProductModel_Product_Id').val('');
+                $('#PurchaseOrderProductModel_Quantity').val('0');
                 $('#POModel').modal('toggle');
-                //alert('PurchaseOrder added successfully');
             }
         });
- 
-        // Automatically add a first row of data
 
     }
+
+    function ChangeSupplierPO() {
+        var productId = $('#SupplierId').val();
+        if (productId.length > 0 && productId != 0) {
+            $("#btnPONew").removeAttr("disabled");
+            $("#btnSavePO").removeAttr("disabled");
+        } else {
+            $("#btnPONew").attr("disabled", "disabled");
+            $("#btnSavePO").attr("disabled", "disabled");
+        }
+    }
+
+    function ShowPrintPO() {
+        alert('hi');
+        $('#my-dialog').load("@Url.Action("MyActionOnController","Billing")", function () {
+            $(this).dialog('open');
+        });
+        return false;
+    }
 </script>
+<script type="text/javascript">
+    $(function () {
+        $('#my-dialog').dialog({
+            autoOpen: false,
+            width: 400,
+            resizable: false,
+            modal: true
+        });
+
+
+    });
+</script>
+
+
+
+
 
 
 
@@ -74,7 +107,7 @@
                             @{
                                 if (ViewBag.SupplierList != null)
                                 {
-                                    @Html.DropDownListFor(x => x.SupplierId, new SelectList(ViewBag.SupplierList, "id", "Name"), "Select supplier", new { @class = "chosen-select", @style = "width:100%;" });
+                                    @Html.DropDownListFor(x => x.SupplierId, new SelectList(ViewBag.SupplierList, "id", "Name"), "Select supplier", new { @class = "chosen-select", @style = "width:100%;",onchange="ChangeSupplierPO()" });
                                 }
 
                             }
@@ -93,39 +126,30 @@
              
                     <div class="form-group">
                         <h3>
-                            Products details: <a class="btn btn-info" data-toggle="modal" data-target="#POModel">
-                                <i class="glyphicon glyphicon-new-window icon-white"></i>
-                                New
-                            </a>
+                            Products details: <a id="btnPONew" disabled='disabled' class="btn btn-info" data-toggle="modal" data-target="#POModel">
+    <i class="glyphicon glyphicon-new-window icon-white"></i>
+    New
+</a>
                         </h3>
                         <div id="divPOAdd">
                             @{
-
                                 Html.RenderPartial("_PurchaseOrderProductsList", Model);
-
                             }
-
                         </div>
                     </div>
-
-                    <div class="form-group">
-
-                        <label>Comment</label>
-                        @Html.TextAreaFor(c => c.Comment, new { @class = "form-control input-group-lg reg_name" })
-
-
-                    </div><!--/form-group-->
-
-
-
-
-
-
-                    <div class="form-group">
-                        <button class="btn btn-primary" type="button" onclick="SaveDocument()">Save PO</button>
-                        <button class="btn">Clear</button>
+                        <div class="form-group">
+                            <label>Comment</label>
+                            @Html.TextAreaFor(c => c.Comment, new { @class = "form-control input-group-lg reg_name" })
+                        </div><!--/form-group-->
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="button" onclick="SaveDocument()" disabled='disabled' id="btnSavePO">Save PO</button>
+                            <a id="btnPONew"   class="btn btn-info" data-toggle="modal" data-target="#POTemplateModel">
+                                <i class="glyphicon glyphicon-new-window icon-white"></i>
+                                Print
+                            </a>
+                            <button class="btn">Clear</button>
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
@@ -143,6 +167,7 @@
         $(selector).chosen(config[selector]);
     }
 </script>
+<div id="my-dialog"></div>
 <div id="POModel" class="modal fade" role="dialog">
     <div class="modal-dialog">
 

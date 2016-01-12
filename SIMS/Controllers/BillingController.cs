@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SIMS.Models;
+using System.IO;
 
 namespace SIMS.Controllers
 {
@@ -35,23 +36,79 @@ namespace SIMS.Controllers
         {
             var product = _productDb.Get(productId);
             var purchaseOrderModel = new PurchaseOrderModel();
-         
 
-            var varPo = new PurchaseOrderProductModel
-            {
-                Product = product,
-                Quantity = quantity,
-                ProductTotalAmount = product.PurchasePrice * quantity
-            };
             if (Session != null && Session["purchaseOrderProducts"] != null)
             {
                 purchaseOrderModel.PurchaseOrderProductModelList = (List<PurchaseOrderProductModel>)Session["purchaseOrderProducts"];
             }
-            purchaseOrderModel.PurchaseOrderProductModelList.Add(varPo);
+            var purchaseOrderProductIdIndex = 0;
+            if (purchaseOrderModel.PurchaseOrderProductModelList.Count > 0)
+            {
+                purchaseOrderProductIdIndex = purchaseOrderModel.PurchaseOrderProductModelList.Last().PurchaseOrderProductId;
+            }
 
+            var varPo = new PurchaseOrderProductModel
+            {
+                PurchaseOrderProductId = purchaseOrderProductIdIndex + 1,
+                Product = product,
+                Quantity = quantity,
+                ProductTotalAmount = product.PurchasePrice * quantity
+            };
+            purchaseOrderModel.PurchaseOrderProductModelList.Add(varPo);
+            CalculatePoAmount(purchaseOrderModel.PurchaseOrderProductModelList);
             if (Session != null) Session["purchaseOrderProducts"] = purchaseOrderModel.PurchaseOrderProductModelList;
 
             return PartialView("_PurchaseOrderProductsList", purchaseOrderModel);
+        }
+
+        [HttpGet]
+        public ActionResult RemoveProductInorder(int PurchaseOrderProductId)
+        {
+            var purchaseOrderModel = new PurchaseOrderModel();
+            if (Session != null && Session["purchaseOrderProducts"] != null)
+            {
+                purchaseOrderModel.PurchaseOrderProductModelList = (List<PurchaseOrderProductModel>)Session["purchaseOrderProducts"];
+            }
+            if (purchaseOrderModel.PurchaseOrderProductModelList != null)
+            {
+                var varPo = purchaseOrderModel.PurchaseOrderProductModelList.FirstOrDefault(c => c.PurchaseOrderProductId == PurchaseOrderProductId);
+                purchaseOrderModel.PurchaseOrderProductModelList.Remove(varPo);
+                CalculatePoAmount(purchaseOrderModel.PurchaseOrderProductModelList);
+                if (Session != null) Session["purchaseOrderProducts"] = purchaseOrderModel.PurchaseOrderProductModelList;
+            }
+
+            return PartialView("_PurchaseOrderProductsList", purchaseOrderModel);
+        }
+
+        public void CalculatePoAmount(List<PurchaseOrderProductModel> purchaseOrderProductModelList)
+        {
+            var sumamount = purchaseOrderProductModelList.Sum(c => c.ProductTotalAmount);
+            ViewBag.POTotalAmount = sumamount;
+        }
+
+        public ActionResult MyActionOnController()
+        {
+            var purchaseOrderModel = new PurchaseOrderModel();
+            if (Session != null && Session["purchaseOrderProducts"] != null)
+            {
+                purchaseOrderModel.PurchaseOrderProductModelList =
+                    (List<PurchaseOrderProductModel>) Session["purchaseOrderProducts"];
+            }
+
+            return Content(RenderRazorViewToString("POTemplate", purchaseOrderModel), "text/html");
+        }
+
+        public string RenderRazorViewToString(string viewName, object model)
+        {
+            ViewData.Model = model;
+            using (var sw = new StringWriter())
+            {
+                var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                var viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+                viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
+                return sw.GetStringBuilder().ToString();
+            }
         }
 
         //[HttpPost]

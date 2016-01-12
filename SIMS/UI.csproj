@@ -1311,6 +1311,7 @@
     <Content Include="Views\Billing\_PurchaseOrderForm.cshtml" />
     <Content Include="Views\Billing\_PurchaseOrderList.cshtml" />
     <None Include="Views\Billing\_PurchaseOrderProductsList.cshtml" />
+    <Content Include="Views\Billing\POTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
