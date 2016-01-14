@@ -195,11 +195,11 @@
             var lstprintableitem = Model.PurchaseOrderProductModelList;
             if (lstprintableitem.Count < 10)
             {
-                var itemcnt = lstprintableitem.Count;
+                var itemcnt = Model.PurchaseOrderProductModelList.Count;
                 for (var j = itemcnt; j <= 10; j++)
                 {
                     lstprintableitem.Add(new PurchaseOrderProductModel());
-                   j++;
+                   
                 }
             }
             foreach (var objPo in lstprintableitem)
@@ -379,16 +379,16 @@
                 <br />
                 <br />
                 <br />
-                <br />
+              
                 Prepared By,
 
             </td>
-            <td style="text-align:left; vertical-align:bottom;" colspan="4">
+            <td style="text-align:left; vertical-align:bottom;" colspan="3">
                 <br />
                 <br />
                 <br />
                 <br />
-                <br />
+          
                 Approved By,
                 
 
@@ -401,44 +401,25 @@
 
 
            
-            <td style="text-align:left; vertical-align:bottom;" colspan="3">
+            <td style="text-align:left; vertical-align:bottom;" colspan="4">
                 <br />
                 <br />
                 <br />
-                <br />
-                ________________________________________
+                 
+                _________________________________
             </td>
 
             <td style="text-align:left; vertical-align:bottom;" colspan="3">
                 <br />
                 <br />
                 <br />
-                <br />
-                ________________________________________
+                
+                _________________________________
             </td>
 
            
         </tr>
-        <tr>
-
-
-
-            <td style="text-align:left;" colspan="3">
-                <br />
-                <br />
-                <br />
-                
-            </td>
-
-            <td style="text-align:left;" colspan="3">
-                <br />
-                <br />
-                <br />
-                
-            </td>
-
-
-        </tr>
+        
     </table>
 
 
