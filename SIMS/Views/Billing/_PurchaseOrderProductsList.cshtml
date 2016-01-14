@@ -93,16 +93,10 @@
     }
 }
     
+<style>
+    .modal-body {
+        max-height: 800px;
+        width:60%
+    }
+</style>
  
-<div id="POTemplateModel" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content" style="width:612px;height:792px;">
-
-            @{
-                Html.RenderPartial("POTemplate", Model);
-            }
-        </div>
-    </div>
-</div>

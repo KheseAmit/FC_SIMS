@@ -70,11 +70,12 @@
     }
 
     function ShowPrintPO() {
-        alert('hi');
+        @*alert('hi');
         $('#my-dialog').load("@Url.Action("MyActionOnController","Billing")", function () {
             $(this).dialog('open');
         });
-        return false;
+        return false;*@
+        window.location = '@Url.Action("MyActionOnController", "Billing")';
     }
 </script>
 <script type="text/javascript">
@@ -143,7 +144,7 @@
                         </div><!--/form-group-->
                         <div class="form-group">
                             <button class="btn btn-primary" type="button" onclick="SaveDocument()" disabled='disabled' id="btnSavePO">Save PO</button>
-                            <a id="btnPONew"   class="btn btn-info" data-toggle="modal" data-target="#POTemplateModel">
+                            <a id="btnPONew"   class="btn btn-info" onclick="ShowPrintPO()">
                                 <i class="glyphicon glyphicon-new-window icon-white"></i>
                                 Print
                             </a>

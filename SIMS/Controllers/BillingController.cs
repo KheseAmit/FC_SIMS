@@ -1,5 +1,9 @@
-﻿using FC.Entities;
+﻿using System.Web.Hosting;
+using FC.Entities;
 using FC.Repositories;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
 using SIMS.Helper;
 using System;
 using System.Collections.Generic;
@@ -8,6 +12,7 @@ using System.Web;
 using System.Web.Mvc;
 using SIMS.Models;
 using System.IO;
+using iTextSharp.text.html.simpleparser;
 
 namespace SIMS.Controllers
 {
@@ -86,7 +91,7 @@ namespace SIMS.Controllers
             ViewBag.POTotalAmount = sumamount;
         }
 
-        public ActionResult MyActionOnController()
+        public FileResult MyActionOnController()
         {
             var purchaseOrderModel = new PurchaseOrderModel();
             if (Session != null && Session["purchaseOrderProducts"] != null)
@@ -94,9 +99,10 @@ namespace SIMS.Controllers
                 purchaseOrderModel.PurchaseOrderProductModelList =
                     (List<PurchaseOrderProductModel>) Session["purchaseOrderProducts"];
             }
-
-            return Content(RenderRazorViewToString("POTemplate", purchaseOrderModel), "text/html");
+            var htmlContent = RenderRazorViewToString("POTemplate", purchaseOrderModel);
+            return File(Help.ConvertHtmlToPdf(htmlContent).ToArray(), "application/pdf", "test.pdf");
         }
+
 
         public string RenderRazorViewToString(string viewName, object model)
         {
@@ -110,7 +116,7 @@ namespace SIMS.Controllers
                 return sw.GetStringBuilder().ToString();
             }
         }
-
+ 
         //[HttpPost]
         //[Route("SaveProduct")]
         //public ActionResult SaveProduct(FC_PurchaseOrder model)
@@ -151,8 +157,6 @@ namespace SIMS.Controllers
 
             ViewBag.ProductList = lstProduct;
             ViewBag.SupplierList = lstSupplier;
-         
-
 
             return null;
         }
