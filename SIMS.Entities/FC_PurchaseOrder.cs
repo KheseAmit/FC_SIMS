@@ -16,6 +16,7 @@ namespace FC.Entities
         public DateTime POdate { get; set; }
         public double POTotalAmount { get; set; }
         public double SalesTax { get; set; }
+        public double OtherAmount { get; set; }
         public bool IsMailSent { get; set; }
         public string Comment { get; set; }
         public DateTime CancelDate { get; set; }

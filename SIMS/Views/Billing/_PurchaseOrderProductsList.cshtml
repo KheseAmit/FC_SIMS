@@ -74,24 +74,84 @@
         </tbody>
     </table>
  
-<br />
-@{
-    if (ViewBag.POTotalAmount != null)
-    {
+<hr />
+ 
+    <h5 style="float:right;padding-right:5%">
+
+        <label>Sub Amount: </label>
+
+        @{
+            if (ViewBag.POTotalAmount != null)
+            {
+                <u style="font-weight: bold;white-space:normal;font-size:100%;" class="label label-default">
+                    <span class="WebRupee">&#x20B9; </span>
+                    @Html.Raw((int)ViewBag.POTotalAmount)
+
+
+                </u>
+            }
+            else
+            {
+                <u style="font-weight: bold;white-space:normal;font-size:100%;" class="label label-default">
+                    <span class="WebRupee">&#x20B9; </span>
+                    @Html.Raw("0")
+
+
+                </u>
+            }
+        }
+        </h5>
+
+<br>
+ 
+ 
+    <div class="col-sm-3" style="padding-left:0px!important;">
+        <label>Tax(%): </label>
+        @Html.TextBoxFor(c => c.SalesTax, new { @class = "form-control input-group-lg reg_name", style = "width:100%;" })
+    </div>
+    <div class="col-sm-3" style="padding-left:0px!important;">
+        <span style="float:right;padding-right:5%">
+            <label>Other(<span class="WebRupee">&#x20B9; </span>): </label>
+           @Html.TextBoxFor(c => c.OtherAmount, new { @class = "form-control input-group-lg reg_name", style = "width:100%;" })
+        </span>
+
+    </div>
+    <div class="col-sm-6" style="padding-left:0px!important;">
+
         <h4 style="float:right;padding-right:5%">
-  
+
             <label>Total Amount: </label>
-            <u style="font-weight: bold;white-space:normal;font-size:100%;" class="label label-primary">
-                <span class="WebRupee">&#x20B9; </span>
-                @Html.Raw((int)ViewBag.POTotalAmount)
+
+            @{
+                if (ViewBag.POTotalAmount != null)
+                {
+                    <u style="font-weight: bold;white-space:normal;font-size:100%;" class="label label-primary">
+                        <span class="WebRupee">&#x20B9; </span>
+                        @Html.Raw((int)ViewBag.POTotalAmount)
 
 
-            </u>
+                    </u>
+                }
+                else
+                {
+                    <u style="font-weight: bold;white-space:normal;font-size:100%;" class="label label-primary">
+                        <span class="WebRupee">&#x20B9; </span>
+                        @Html.Raw("0")
 
-            
+
+                    </u>
+                }
+            }
+
         </h4>
-    }
-}
+
+    </div>
+
+ 
+
+
+
+
     
 <style>
     .modal-body {
