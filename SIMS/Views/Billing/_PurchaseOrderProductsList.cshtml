@@ -83,36 +83,42 @@
         @{
             if (ViewBag.POTotalAmount != null)
             {
-                <u style="font-weight: bold;white-space:normal;font-size:100%;" class="label label-default">
+                <u style="font-weight: bold;white-space:normal;font-size:100%;" class="label label-default" id="USubTotal">
                     <span class="WebRupee">&#x20B9; </span>
-                    @Html.Raw((int)ViewBag.POTotalAmount)
-
-
-                </u>
+                    <div id="spnSubTotal" style="display: inline;"> @Html.Raw((int)ViewBag.POTotalAmount) </div>
+</u>
             }
             else
             {
-                <u style="font-weight: bold;white-space:normal;font-size:100%;" class="label label-default">
+                <u style="font-weight: bold;white-space:normal;font-size:100%;" class="label label-default" id="USubTotal">
                     <span class="WebRupee">&#x20B9; </span>
-                    @Html.Raw("0")
-
-
-                </u>
+                    <div id="spnSubTotal" style="display: inline;">  @Html.Raw("0")</div>
+</u>
             }
         }
         </h5>
 
 <br>
- 
+<script type="text/javascript">
+    function CalculateTotalAmount()
+    {
+        var subTotal =  parseFloat($("#spnSubTotal").html());
+        var otherAmount = parseFloat($('#OtherAmount').val());
+        var salesTax = parseFloat($('#SalesTax').val());
+        var salesTaxAmount = parseFloat(subTotal * (salesTax / 100));
+        var totalAmount = parseFloat(subTotal + otherAmount + salesTaxAmount);
+        $("#spnTotalAmount").html(totalAmount.toFixed(2));
+    }
+</script>
  
     <div class="col-sm-3" style="padding-left:0px!important;">
         <label>Tax(%): </label>
-        @Html.TextBoxFor(c => c.SalesTax, new { @class = "form-control input-group-lg reg_name", style = "width:100%;" })
+        @Html.TextBoxFor(c => c.SalesTax, new { @class = "form-control input-group-lg reg_name", style = "width:100%;", onblur="CalculateTotalAmount()"})
     </div>
     <div class="col-sm-3" style="padding-left:0px!important;">
         <span style="float:right;padding-right:5%">
             <label>Other(<span class="WebRupee">&#x20B9; </span>): </label>
-           @Html.TextBoxFor(c => c.OtherAmount, new { @class = "form-control input-group-lg reg_name", style = "width:100%;" })
+           @Html.TextBoxFor(c => c.OtherAmount, new { @class = "form-control input-group-lg reg_name", style = "width:100%;", onblur="CalculateTotalAmount()"})
         </span>
 
     </div>
@@ -127,32 +133,23 @@
                 {
                     <u style="font-weight: bold;white-space:normal;font-size:100%;" class="label label-primary">
                         <span class="WebRupee">&#x20B9; </span>
-                        @Html.Raw((int)ViewBag.POTotalAmount)
-
-
+                        <div id="spnTotalAmount" style="display: inline;">
+                            @Html.Raw((int)ViewBag.POTotalAmount)
+                        </div>
                     </u>
                 }
                 else
                 {
                     <u style="font-weight: bold;white-space:normal;font-size:100%;" class="label label-primary">
                         <span class="WebRupee">&#x20B9; </span>
-                        @Html.Raw("0")
-
-
+                        <div id="spnTotalAmount" style="display: inline;"> @Html.Raw("0") </div>
                     </u>
                 }
             }
 
         </h4>
 
-    </div>
-
- 
-
-
-
-
-    
+    </div>    
 <style>
     .modal-body {
         max-height: 800px;
