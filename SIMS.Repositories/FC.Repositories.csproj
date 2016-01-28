@@ -53,6 +53,7 @@
     <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="ManufactureRepository.cs" />
     <Compile Include="PasswordHasher.cs" />
+    <Compile Include="PORepository.cs" />
     <Compile Include="ProductRepository.cs" />
     <Compile Include="ProductTypeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -25,15 +25,18 @@ namespace SIMS.Controllers
         readonly SupplierRepository _supplierDb = new SupplierRepository();
         readonly ProductTypeRepository _ProductTypeDb = new ProductTypeRepository();
         readonly ManufactureRepository _ManufactureDb = new ManufactureRepository();
+        readonly PORepository _PORepository = new PORepository();
+        readonly POproductRepository _POproductRepository = new POproductRepository();
         #region Action
         // GET: Product
 
-         
+
         public ActionResult PurchaseOrder()
         {
             var purchaseOrderModel = new PurchaseOrderModel();
-           GetProductListModel();
-           return View(purchaseOrderModel);
+            Session["purchaseOrderProducts"] = null;
+            GetProductListModel();
+            return View(purchaseOrderModel);
         }
 
         [HttpGet]
@@ -116,14 +119,41 @@ namespace SIMS.Controllers
                 return sw.GetStringBuilder().ToString();
             }
         }
- 
-        //[HttpPost]
-        //[Route("SaveProduct")]
-        //public ActionResult SaveProduct(FC_PurchaseOrder model)
-        //{
-        //    _productDb.SaveChanges(model);
-        //    return PartialView("_ProductList", GetProductListModel());
-        //}
+
+        [HttpPost]
+        [Route("SavePurchaseOrder")]
+        public ActionResult SavePurchaseOrder(PurchaseOrderModel model)
+        {
+            model.PurchaseOrderProductModelList =
+                 (List<PurchaseOrderProductModel>)Session["purchaseOrderProducts"];
+
+            FC_PurchaseOrder newOrder = new FC_PurchaseOrder();
+            newOrder.POTotalAmount = model.POTotalAmount;
+            newOrder.SupplierId = model.SupplierId;
+            newOrder.SalesTax = model.SalesTax;
+            newOrder.OtherAmount = model.OtherAmount;
+            newOrder.Comment = model.Comment;
+            newOrder.PONumber = "PO" + model.SupplierId;
+            newOrder.POdate = System.DateTime.Now;
+            _PORepository.SaveChanges(newOrder);
+
+          
+            FC_PurchaseOrderProducts orderproducts = new FC_PurchaseOrderProducts();
+            foreach (var poproduct in model.PurchaseOrderProductModelList)
+            {
+                orderproducts.ProductId = poproduct.PurchaseOrderProductId;
+                orderproducts.ProductTotalAmount = poproduct.ProductTotalAmount;
+                orderproducts.Quantity = poproduct.Quantity;
+                orderproducts.PurchaseOrderId = newOrder.Id;
+                _POproductRepository.SaveChanges(orderproducts);
+            }
+
+
+            var purchaseOrderModel = new PurchaseOrderModel();
+            Session["purchaseOrderProducts"] = null;
+            GetProductListModel();
+            return PartialView("_PurchaseOrderProductsList", purchaseOrderModel);
+        }
 
         //[HttpGet]
         //[Route("EditProduct")]
@@ -152,12 +182,12 @@ namespace SIMS.Controllers
         {
             var lstProduct = _productDb.GetAll();
             var lstSupplier = _supplierDb.GetAll();
-            
-        //    var viewmodel = new PurchaseOrderModel { PurchaseOrderList = lstProduct.ToList() };
+            var poList = _PORepository.GetAll();
+            var viewmodel = new PurchaseOrderModel { PurchaseOrderList = poList.ToList() };
 
             ViewBag.ProductList = lstProduct;
             ViewBag.SupplierList = lstSupplier;
-
+            ViewBag.PurchaseOrderList = viewmodel;
             return null;
         }
 
