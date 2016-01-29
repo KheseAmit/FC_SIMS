@@ -1,14 +1,7 @@
 ﻿@model SIMS.Models.PurchaseOrderModel
 
 <script type="text/javascript" charset="utf-8">
-    var dataTable = $('.datatable').dataTable({
-        "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-12'i><'col-md-12 center-block'p>>",
-        "sPaginationType": "bootstrap",
-        "oLanguage": {
-            "sLengthMenu": "_MENU_ records per page"
 
-        }
-    });
 
     function DeleteProductPO(PurchaseOrderProductId) {
         $('#SuccessMessage').hide(1000);
@@ -26,9 +19,9 @@
     }
 </script>
 <style>
-    .dataTables_filter, .dataTables_info { display: none; }
-    .dataTables_wrapper .fg-toolbar { display: none; }
-    .dataTables_length, .dataTables_info { display: none; }
+    #PODataTable_filter, #PODataTable_info { display: none; }
+    #PODataTable_wrapper .fg-toolbar { display: none; }
+   #PODataTable_length, #PODataTable_info { display: none; }
     .pagination{margin:0px;}
 </style>
 

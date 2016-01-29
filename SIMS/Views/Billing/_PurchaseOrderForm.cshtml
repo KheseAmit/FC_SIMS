@@ -15,6 +15,7 @@
                 $('#SuccessMessage').show(1000);
                 $('html, body').animate({ scrollTop: 0 }, 800);
                 ClearAll();
+               
                 $("#DivRef").html(data);
                 //alert('PurchaseOrder added successfully');
             }
@@ -75,6 +76,7 @@
             $(this).dialog('open');
         });
         return false;*@
+     
         window.location = '@Url.Action("MyActionOnController", "Billing")';
     }
 </script>

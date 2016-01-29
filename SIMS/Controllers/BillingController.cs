@@ -122,7 +122,7 @@ namespace SIMS.Controllers
 
         [HttpPost]
         [Route("SavePurchaseOrder")]
-        public ActionResult SavePurchaseOrder(PurchaseOrderModel model)
+        public ActionResult SavePurchaseOrder(PurchaseOrderModel model, string spnTotalAmount,FormCollection formvalues)
         {
             model.PurchaseOrderProductModelList =
                  (List<PurchaseOrderProductModel>)Session["purchaseOrderProducts"];
@@ -137,22 +137,34 @@ namespace SIMS.Controllers
             newOrder.POdate = System.DateTime.Now;
             _PORepository.SaveChanges(newOrder);
 
-          
             FC_PurchaseOrderProducts orderproducts = new FC_PurchaseOrderProducts();
-            foreach (var poproduct in model.PurchaseOrderProductModelList)
+            if (model.PurchaseOrderProductModelList != null)
             {
-                orderproducts.ProductId = poproduct.PurchaseOrderProductId;
-                orderproducts.ProductTotalAmount = poproduct.ProductTotalAmount;
-                orderproducts.Quantity = poproduct.Quantity;
-                orderproducts.PurchaseOrderId = newOrder.Id;
-                _POproductRepository.SaveChanges(orderproducts);
+                var TotalAmount = 0.0;
+                foreach (var poproduct in model.PurchaseOrderProductModelList)
+                {
+                    orderproducts.ProductId = poproduct.PurchaseOrderProductId;
+                    orderproducts.ProductTotalAmount = poproduct.ProductTotalAmount;
+                    orderproducts.Quantity = poproduct.Quantity;
+                    orderproducts.PurchaseOrderId = newOrder.Id;
+                    _POproductRepository.SaveChanges(orderproducts);
+                    TotalAmount += orderproducts.ProductTotalAmount;
+                }
+
+                var salesTaxAmount = Convert.ToDouble(TotalAmount*(newOrder.SalesTax/100));
+                var ProducttotalAmount = Convert.ToDouble(TotalAmount + newOrder.OtherAmount + salesTaxAmount);
+                newOrder.POTotalAmount = Math.Round(ProducttotalAmount, 2);
+                newOrder.PONumber = "PO" + model.SupplierId + newOrder.Id;
+                _PORepository.SaveChanges(newOrder);
             }
+
+
 
 
             var purchaseOrderModel = new PurchaseOrderModel();
             Session["purchaseOrderProducts"] = null;
-            GetProductListModel();
-            return PartialView("_PurchaseOrderProductsList", purchaseOrderModel);
+            purchaseOrderModel = GetProductListModel();
+            return PartialView("_PurchaseOrderList", purchaseOrderModel);
         }
 
         //[HttpGet]
@@ -184,11 +196,11 @@ namespace SIMS.Controllers
             var lstSupplier = _supplierDb.GetAll();
             var poList = _PORepository.GetAll();
             var viewmodel = new PurchaseOrderModel { PurchaseOrderList = poList.ToList() };
-
+        
             ViewBag.ProductList = lstProduct;
             ViewBag.SupplierList = lstSupplier;
             ViewBag.PurchaseOrderList = viewmodel;
-            return null;
+            return viewmodel;
         }
 
         #endregion
