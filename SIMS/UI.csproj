@@ -1320,8 +1320,10 @@
     <Content Include="Views\Billing\PurchaseOrder.cshtml" />
     <Content Include="Views\Billing\_PurchaseOrderForm.cshtml" />
     <Content Include="Views\Billing\_PurchaseOrderList.cshtml" />
+    <Content Include="Views\Billing\SalesInvoiceTemplate.cshtml" />
     <None Include="Views\Billing\_PurchaseOrderProductsList.cshtml" />
     <Content Include="Views\Billing\POTemplate.cshtml" />
+    <Content Include="Views\Billing\_SalseInvoiceForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
