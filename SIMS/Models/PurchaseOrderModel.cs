@@ -50,14 +50,13 @@ namespace SIMS.Models
         public string InvoiceNumber { get; set; }
         public DateTime InvoiceDate { get; set; }
         public string CustomerId { get; set; }
-        public int SupplierId { get; set; }
-        public DateTime POdate { get; set; }
         public double BillTotalAmount { get; set; }
         public int SalesTax { get; set; }
         public double SalesTaxAmount { get; set; }
         public int Vat { get; set; }
         public double VatAmount { get; set; }
         public double OtherAmount { get; set; }
+        public bool IsMailSent { get; set; }
         public string Comment { get; set; }
         public DateTime CancelDate { get; set; }
         public int CanceledBy { get; set; }
@@ -66,7 +65,6 @@ namespace SIMS.Models
 
         public List<SalseInvoiceProductModel> SalseInvoiceProductModelList { get; set; }
         public SalseInvoiceProductModel SalseInvoiceProductModel { get; set; }
-        public List<FC_PurchaseOrder> PurchaseOrderList { get; set; }
     }
 
     public class SalseInvoiceProductModel

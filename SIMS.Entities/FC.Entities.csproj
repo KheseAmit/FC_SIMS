@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccessEntityBase.cs" />
+    <Compile Include="FC_Customer.cs" />
     <Compile Include="FC_Manufacture.cs" />
     <Compile Include="FC_Product.cs" />
     <Compile Include="FC_PurchaseOrder.cs" />
@@ -60,7 +61,9 @@
     <Compile Include="FcEntities.cs" />
     <Compile Include="FC_Users.cs" />
     <Compile Include="FC_Supplier.cs" />
-    <Compile Include="PurchaseOrderProducts.cs" />
+    <Compile Include="FC_PurchaseOrderProducts.cs" />
+    <Compile Include="FC_SalesInvoice.cs" />
+    <Compile Include="FC_SalesInvoiceProducts.cs" />
     <Compile Include="SIMS_Designation.cs" />
     <Compile Include="SIMS_Employee.cs" />
     <Compile Include="SIMS_EmployeeType.cs" />
