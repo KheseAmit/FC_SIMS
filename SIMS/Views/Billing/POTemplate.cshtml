@@ -199,13 +199,13 @@
                 for (var j = itemcnt; j <= 10; j++)
                 {
                     lstprintableitem.Add(new PurchaseOrderProductModel());
-                   
+
                 }
             }
             foreach (var objPo in lstprintableitem)
-         {
-             if (objPo.Product != null)
-             {
+            {
+                if (objPo.Product != null)
+                {
                  <tr>
                 
                      <td style="height: 25px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; text-align: left; border-right-width: 1px; border-right-style: solid; border-right-color: black; vertical-align: middle; height: 25px;" height="19">
@@ -225,9 +225,9 @@
                      </td>
 
                  </tr>
-             }
-             else
-             {
+                }
+                else
+                {
                 <tr>
 
                     <td style="height: 25px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; text-align: left; border-right-width: 1px; border-right-style: solid; border-right-color: black; vertical-align: middle; height: 25px;" height="19">
@@ -247,9 +247,9 @@
                     </td>
 
                 </tr>
-             }
-             i++;
-         } }
+                }
+                i++;
+            } }
 
 
         <tr>
@@ -263,7 +263,11 @@
                 SUBTOTAL
             </td>
             <td style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;text-align:center; vertical-align:middle;background-color:#F2F2F2;">
-                2,325.00
+                @{
+                    var salesTaxAmount = Convert.ToDouble(Model.POTotalAmount * (Model.SalesTax / 100));
+                    var ProducttotalAmount = Convert.ToDouble(Model.POTotalAmount + Model.OtherAmount + salesTaxAmount);
+                    @Html.Raw(ProducttotalAmount)
+                }
             </td>
 
 
@@ -279,7 +283,10 @@
                 TAX
             </td>
             <td style="text-align:left; vertical-align:middle;border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
-                -
+                @{
+                    @Html.Raw(@salesTaxAmount);
+                }
+
             </td>
 
         </tr>
@@ -317,7 +324,7 @@
                 OTHER
             </td>
             <td style="text-align:left; vertical-align:middle;border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
-                -
+                @Html.Raw(Model.OtherAmount)
             </td>
 
 
@@ -335,7 +342,7 @@
                 <b> TOTAL </b>
             </td>
             <td style="text-align:left; vertical-align:middle;border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
-                <b>  <span class="WebRupee">&#x20B9; </span>2,325.00 </b>
+                <b>  <span class="WebRupee">&#x20B9; </span>@Model.POTotalAmount </b>
             </td>
 
 
@@ -357,7 +364,7 @@
         </tr>
         <tr>
             <td colspan=4 height="24" style="text-align:left; vertical-align:middle;border: 1px #d9d9d9 solid;font-size:x-small;">
-                5. [Comment]
+                5. @Html.Raw(Model.Comment)
             </td>
             <td style="text-align:left; vertical-align:middle;" border="0">
                 <br />

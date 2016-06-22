@@ -165,6 +165,7 @@ namespace SIMS.Controllers
             Session["purchaseOrderProducts"] = null;
             purchaseOrderModel = GetProductListModel();
             return PartialView("_PurchaseOrderList", purchaseOrderModel);
+
         }
 
         //[HttpGet]
